@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sections.css">
+</head>
+<body>
+    <header>
+        <img src="imgs/onepiecelogo.png" alt="">
+    </header>
+    <nav>
+        <ul>
+            <a href="#"><li>HOMEPAGE</li></a>
+            <a href="#"><li>ANIME</li></a>
+            <a href="#"><li>COMMUNITY</li></a>
+            <a href="#"><li>ABOUT</li></a>
+            <a href="#"><li>SIGN IN/UP</li></a>
+        </ul>
+    </nav>
+    <!--HEADER STUFF ^-->
+    <section>
+        <div class="slider">
+            <span onclick="goLeft()" id="left"></span>
+            <div class="gallery-container">
+                <img src="imgs/carrosselimg.jpeg" alt=""><img src="imgs/carrosselimg.jpeg" alt=""><img src="imgs/carrosselimg.jpeg" alt=""><img src="imgs/carrosselimg.jpeg" alt="">
+            </div>
+            <span onclick="goRight()" id="right"></span>
+        </div>
+    </section>
+</body>
+</html>
+<script src="slider.js"></script>
