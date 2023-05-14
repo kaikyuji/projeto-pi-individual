@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/css-index/cadastro.css">
+</head>
+<body>
+    <header>
+        <a href="index.html"><h1>Memories</h1></a>
+        <div class="navbar">
+            <a href="index.html">Homepage</a>
+            <a href="index.html">About</a>
+            <a href="index.html">Community</a>
+            <a href="login.html">Sign in</a>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <h1>Cadastre-se!!</h1>
+            <div class="campo">
+                <label for="nome">Nome:</label>
+                <input type="text" id="input_nome">
+            </div>
+            <div class="campo">
+                <label for="email">Email:</label>
+                <input type="text" id="input_email">
+            </div>
+            <div class="campo">
+                <label for="nascimento">Data de nascimento:</label>
+                <input type="text" id="input_nascimento">
+            </div>
+            <div class="campo">
+                <label for="senha">Senha:</label>
+                <input type="password" id="input_senha">
+            </div>
+            <div class="campo">
+                <label for="confirmasenha">Confirma senha:</label>
+                <input type="text" id="input_confirmasenha">
+            </div>
+            <button onclick="cadastrar()">Cadastrar</button>
+        </div>
+    </section>    
+</body>
+</html>
+<script>
+    function cadastrar(){
+        var nomeVar = input_nome.value;
+        var emailVar = input_email.value;
+        var nascimentoVar = input_nascimento.value;
+        var senhaVar = input_senha.value;
+        var confirmasenhaVar = input_confirmasenha.value;
+
+        if(nomeVar == `` || emailVar == `` || nascimentoVar == `` || senhaVar == `` || confirmasenhaVar == ``){
+            alert(`campo obrigatorio vazio!`)
+        }else{
+            if(senhaVar != confirmasenhaVar){
+                alert(`Campos de senha náo correspodem`)
+            }else{
+
+                // Enviando o valor da nova input
+                fetch("/usuarios/cadastrar", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        // crie um atributo que recebe o valor recuperado aqui
+                        // Agora vá para o arquivo routes/usuario.js
+                        nomeServer: nomeVar,
+                        emailServer: emailVar,
+                        senhaServer: senhaVar,
+                        nascimentoServer: nascimentoVar
+                    })
+                }).then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                    if (resposta.ok) {
+                        cardErro.style.display = "block";
+                        alert(`Cadastro realizado com sucesso! `);
+                    } else {
+                        if(resposta.sqlMessage == `"Duplicate entry '${emailVar} for key 'usuario.email'"`){
+                            alert('Já existe um cadastro com esse login!')
+                        }else if(resposta.sqlMessage == `"Duplicate entry '${nomeVar} for key 'usuario.nome'`){
+                            alert('Já existe um cadastro com esse nome!')
+                        // o problema é que o .sqlMessage é um objeto do JSON 'erro' vindo do controllers/usuarioControllers.js, e não sei como trazer essa informaçao do back pro front...
+                        }else{
+                            alert("Houve um erro ao tentar realizar o cadastro!");
+                        }
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            }       
+        }
+    }
+</script>

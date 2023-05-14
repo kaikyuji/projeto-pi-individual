@@ -1,0 +1,55 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --color1: #B42624;
+    --color2: #861311;
+    --color3: #D9D9D9;
+}
+
+body{
+    height: 100vh;
+    background-color: var(--color1);
+}
+
+header{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    border: 2px solid black;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+section .container{
+    width: 100%;
+    min-width: 375px;
+    max-width: 800px;
+    height: 500px;
+    padding: 2em;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+section .container .campo{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+section .container .campo input{
+    width: 100%;
+    padding: 1em;
+    outline: none;
+    border: none;
+}
