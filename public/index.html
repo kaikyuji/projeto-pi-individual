@@ -7,6 +7,7 @@
     <title>Document</title>
     <script src="https://kit.fontawesome.com/7ac0278b37.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/css-index/header.css">
+    <link rel="stylesheet" href="css/css-index/indexStyle.css">
 </head>
 <body>
     <header>
@@ -22,6 +23,51 @@
         </ul>
     </nav>
     <!--HEADER STUFF ^-->
-  
+    <section id="index" class="sect1">
+        <div class="s1-container">
+            <div class="text">
+                <h1>Olá, o Going Merry está lhe dando as boas-vindas!</h1>
+                <p>One Piece é uma das maiores obras de todos os tempos, lançada em 1997 na forma de mangá, e adaptada em versão anime em 1999, desde então, sempre estando no topo das obras mais assistidas, batendo recordes, e tendo feitos inéditos, como a entrada no Guiness Book pelo maior número de cópias publicadas da mesma série de quadrinhos do mesmo autor.</p>
+                <br>
+                <p>Além disso, é um anime com uma história muito bem construida, que aborda  desde tópicos mais simples, como o companherismo, e até mesmo a tópicos mais pesados como a escravidão.</p>
+            </div>
+        </div>
+        <div class="s1-container">
+            <img src="assets/imgs/site-stuff/merry.png" alt="">
+        </div>
+    </section>
+    <section>
+        <div class="s1-container">
+            <div class="text">
+                <h1>Agora, vamos falar um pouco sobre nós:</h1>
+                <p>A página "Memories" tem esse nome em homenagem ao primeiro encerramento do anime, que possui esse exato nome, e é uma das músicas icônicas da série.</p>
+                <br>
+                <p>Feita de fãs para fãs, contamos com várias áreas para que a comunidade consiga interagir entre si, discutir sobre tópicos relacionados à obra, não limitando apenas ao anime ou mangá.</p>
+                <br>
+                <p>Essa é uma página feita com o único intuito de unir pessoas que partilham desse mesmo gosto, sem objetivos de monetizar e lucrar em cima de qualquer coisa relacionada ao site.</p>
+            </div>
+        </div>
+        <div class="s1-container">
+            <img src="assets/imgs/site-stuff/luffy.png" alt="">
+        </div>
+    </section>
+    <section>
+        <div class="s2-container">
+            <div class="text">
+                <h1>Mas e afinal, por que assistir One Piece?</h1>
+                <p>Muitos ainda têm essa dúvida e questionam se vale a pena ou não assistir ou ler essa obra, visto que a quantidade de capítulos é bem volumosa, então, temos um tópico justamente aos usuários mais novos nesse universo, caso você se interesse, basta clicar no mapa.</p>
+            </div>
+            <a href="#"><img src="assets/imgs/site-stuff/op-map.png" alt=""></a>
+        </div>
+    </section>
 </body>
 </html>
+<script>
+    var sections = document.querySelectorAll('section')
+    for(let x of sections){
+        x.style.opacity = 0
+        setTimeout(()=>{
+            x.style.opacity = 1
+        }, 1000)
+    }
+</script>

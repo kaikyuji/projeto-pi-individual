@@ -5,44 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/css-index/cadastro.css">
+    <script src="https://kit.fontawesome.com/7ac0278b37.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/css-index/styleLogin.css">
 </head>
 <body>
-    <header>
-        <a href="index.html"><h1>Memories</h1></a>
-        <div class="navbar">
-            <a href="index.html">Homepage</a>
-            <a href="index.html">About</a>
-            <a href="index.html">Community</a>
-            <a href="login.html">Sign in</a>
+    <a href="index.html"><img class='triangle' id="top-right" src="assets/imgs/site-stuff/triangle.svg" alt=""></a>
+    <a href="index.html"><img class='triangle' id="top-left" src="assets/imgs/site-stuff/triangle.svg" alt=""></a>
+    <a href="index.html"><img class='triangle' id="bottom-right" src="assets/imgs/site-stuff/triangle.svg" alt=""></a>
+    <a href="index.html"><img class='triangle' id="bottom-left" src="assets/imgs/site-stuff/triangle.svg" alt=""></a>
+    <!--<p id="back">Clique aqui para voltar para pagina inicial</p>-->
+    <div class="container">
+        <div class="container-imagem">
+            
         </div>
-    </header>
-    <section>
-        <div class="container">
-            <h1>Cadastre-se!!</h1>
+        <div id="credenciais" class="container-cadastro">
+            <h1>Cadastro</h1>
             <div class="campo">
-                <label for="nome">Nome:</label>
-                <input type="text" id="input_nome">
+                <i class="fa-solid fa-user fa-xl"></i>
+                <input placeholder="Insira seu username" type="text" id="input_nome">
             </div>
             <div class="campo">
-                <label for="email">Email:</label>
-                <input type="text" id="input_email">
+                <i class="fa-solid fa-envelope fa-xl"></i>
+                <input placeholder="Insira seu e-mail" type="text" id="input_email">
             </div>
             <div class="campo">
-                <label for="nascimento">Data de nascimento:</label>
-                <input type="text" id="input_nascimento">
+                <i class="fa-solid fa-cake-candles fa-xl"></i>
+                <input placeholder="Insira sua data de nascimento" type="text" id="input_nascimento">
             </div>
             <div class="campo">
-                <label for="senha">Senha:</label>
-                <input type="password" id="input_senha">
+                <i class="fa-solid fa-lock fa-xl"></i>
+                <input placeholder="Insira sua senha" type="password" id="input_senha">
             </div>
             <div class="campo">
-                <label for="confirmasenha">Confirma senha:</label>
-                <input type="text" id="input_confirmasenha">
+                <i class="fa-solid fa-lock fa-xl"></i>
+                <input placeholder="Confirme a sua senha" type="password" id="input_confirmasenha">
             </div>
-            <button onclick="cadastrar()">Cadastrar</button>
+            <div class="buttonBox">
+                <button onclick="cadastrar()">Cadastrar</button>
+                <h6>Já possui uma conta? <a href="login.html">Clique aqui.</a> </h6>
+            </div>
         </div>
-    </section>    
+        <div class="container-cadastro" id="eastblue">
+            <img src="assets/imgs/site-stuff/home-image.jpeg" alt="">
+        </div>
+    </div> 
 </body>
 </html>
 <script>
@@ -77,17 +83,9 @@
                 }).then(function (resposta) {
                     console.log("resposta: ", resposta);
                     if (resposta.ok) {
-                        cardErro.style.display = "block";
                         alert(`Cadastro realizado com sucesso! `);
                     } else {
-                        if(resposta.sqlMessage == `"Duplicate entry '${emailVar} for key 'usuario.email'"`){
-                            alert('Já existe um cadastro com esse login!')
-                        }else if(resposta.sqlMessage == `"Duplicate entry '${nomeVar} for key 'usuario.nome'`){
-                            alert('Já existe um cadastro com esse nome!')
-                        // o problema é que o .sqlMessage é um objeto do JSON 'erro' vindo do controllers/usuarioControllers.js, e não sei como trazer essa informaçao do back pro front...
-                        }else{
-                            alert("Houve um erro ao tentar realizar o cadastro!");
-                        }
+                        throw("Houve um erro ao tentar realizar o cadastro!");
                     }
                 }).catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
