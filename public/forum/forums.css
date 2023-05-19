@@ -1,0 +1,33 @@
+
+section{
+    display: flex;
+    justify-content: space-around;
+    padding: 2em;
+    width: 100%;
+    min-height: 100vh;
+}
+
+section button{
+    width: 30%;
+    height: 200px;
+    border: none;
+    border-radius: 50px;
+    background: var(--color1);
+    cursor: pointer;
+}
+
+section .postSection{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 60%;
+    height: 100%;
+}
+
+section .postSection .posts{
+    height: 200px;
+    padding: 2em;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+

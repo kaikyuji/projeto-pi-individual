@@ -1,27 +1,31 @@
 create database memories;
 use memories;
 
-create table usuario
-(idUsuario int primary key auto_increment,
-nome varchar(50),
-email varchar(100),
+create table Usuario
+(id int primary key auto_increment,
+username varchar(50) unique,
 senha varchar(50),
-dtNascimento date
+email varchar(100) unique,
+nascimento date
 );
 
-create table postagens
-(idPost int primary key auto_increment,
+create table Post
+(id int,
+titulo varchar(50),
 conteudo text,
-dtPostagem date,
-fkUsuario int,
-foreign key (fkUsuario) references usuario(idUsuario)
+dataPost datetime,
+fkUser int,
+constraint PK primary key (id, fkUser),
+constraint FK foreign key (fkUser) references Usuario(id)
 );
 
-create table records
-(idRecord int primary key auto_increment,
+
+create table Recorde
+(id int primary key auto_increment,
 pontuacao int,
 dtRecorde date,
 fkUsuario int,
 foreign key (fkUsuario) references usuario(idUsuario)
 )
+
 

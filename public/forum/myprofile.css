@@ -1,0 +1,40 @@
+section{
+    display: flex;
+    align-items: center;
+    padding: 2em;
+    height: 75vh;
+}
+
+section .profile{
+    width: 50%;
+    height: 90%;
+    background-color: var(--color2);
+    padding: 2em;
+    border-radius: 25px;
+}
+
+section .hello{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 90%;
+}
+section .profile .container{
+    display: flex;
+    width: 100%;
+    background-color: var(--color2);
+}
+
+section .profile .container .firstLine{
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    border-bottom: 2px solid black;
+}
+
+section .profile .container .firstLine .status ul{
+    list-style: none;   
+}
