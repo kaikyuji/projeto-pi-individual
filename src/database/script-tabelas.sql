@@ -6,7 +6,8 @@ create table Usuario
 username varchar(50) unique,
 senha varchar(50),
 email varchar(100) unique,
-nascimento date
+nascimento date,
+bio text
 );
 
 create table Post

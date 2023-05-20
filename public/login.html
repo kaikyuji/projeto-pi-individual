@@ -37,16 +37,15 @@
 </html>
 <script>
     function login(){
-        var emailVar = input_email.value;
-        var senhaVar = input_senha.value;
+        var usuarioLogin = {
+            email: input_email.value,
+            senha: input_senha.value
+        }
 
-        if (emailVar == "" || senhaVar == "") {
+        if (usuarioLogin.emailVar == "" || usuarioLogin.senhaVar == "") {
             alert("Mensagem de erro para todos os campos em branco");
         }
         else {
-            console.log("FORM LOGIN: ", emailVar);
-            console.log("FORM SENHA: ", senhaVar);
-
             fetch("/usuarios/autenticar", {
                 method: "POST",
                 headers: {
@@ -55,8 +54,7 @@
                 body: JSON.stringify({
                     // crie um atributo que recebe o valor recuperado aqui
                     // Agora vá para o arquivo routes/usuario.js
-                    emailServer: emailVar,
-                    senhaServer: senhaVar
+                    loginJSON: usuarioLogin
                 })
             }).then(function (resposta) {
                 console.log("ESTOU NO THEN DO entrar()!")
@@ -69,14 +67,14 @@
                         console.log(JSON.stringify(json));
 
                         sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.idUsuario;
+                        sessionStorage.NOME_USUARIO = json.username;
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.IDADE_USUARIO = json.idade
 
                         alert('Login realizado com sucesso!')
                         setTimeout(function () {
                             window.location = "/forum/forums.html";
                         }, 1000); // apenas para exibir o loading
-
                     });
 
                 } else {

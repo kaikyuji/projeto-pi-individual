@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/7ac0278b37.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="forums.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <header>
+        <ul>
+            <a href="../index.html"><li>Home</li></a>
+            <a href="forums.html"><li>Forums</li></a>
+            <a href=""><li>Jumping Game</li></a>
+            <a href="profile.html"><li><i class="fa-solid fa-user fa-xl"></i></li></a>
+        </ul>
+    </header>
+    <section>
+        <div class="specificPost">
+        
+        </div>
+    </section>
+    <footer>
+        <h3>Feito de fãs, para fãs.</h3>
+        <h4>ワンピース❤️</h4>
+    </footer>
+</body>
+</html>
+<script>
+    var idPost = sessionStorage.getItem('ID_POST')
+    fetch(`/usuarios/posts/${idPost}`, {cache: "no-store"})
+    .then(function(response){
+        if(response.ok){
+            response.json().then(function(resposta){
+                console.log('Dados recebidos: ')
+                console.log(resposta)
+                var titulo = document.createElement('h1');
+                titulo.textContent = resposta[0].titulo;
+                var conteudo = document.createElement('p');
+                conteudo.textContent = resposta[0].conteudo;
+                document.querySelector('.specificPost').append(titulo)
+                document.querySelector('.specificPost').append(conteudo)
+            })
+        }else{
+            alert('Nenhum dado encontrado ou erro na API.')
+        }
+    }).catch(function(error){
+        console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+    })
+</script>

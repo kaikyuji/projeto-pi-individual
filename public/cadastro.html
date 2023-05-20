@@ -52,22 +52,25 @@
 </body>
 </html>
 <script>
+    sessionStorage.clear()
     function cadastrar(){
-        var nomeVar = input_nome.value;
-        var emailVar = input_email.value;
-        var nascimentoVar = input_nascimento.value;
-        var senhaVar = input_senha.value;
-        var confirmasenhaVar = input_confirmasenha.value;
-
-        if(nomeVar == `` || emailVar == `` || nascimentoVar == `` || senhaVar == `` || confirmasenhaVar == ``){
+        var usuarioCadastro = {
+            username: input_nome.value,
+            email: input_email.value,
+            nascimento: input_nascimento.value,
+            senha: input_senha.value,
+            confirmasenha: input_confirmasenha.value
+        }
+        
+        if(usuario.username == `` || usuario.email == `` || usuario.nascimento == `` || usuario.senha == `` || usuario.confirmasenha == ``){
             alert(`campo obrigatorio vazio!`)
         }else{
-            if(senhaVar != confirmasenhaVar){
+            if(usuario.senha != usuario.confirmasenha){
                 alert(`Campos de senha náo correspodem`)
             }else{
-
                 // Enviando o valor da nova input
-                fetch("/usuarios/cadastrar", {
+                fetch("/usuarios/cadastrar", 
+                    {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -75,15 +78,13 @@
                     body: JSON.stringify({
                         // crie um atributo que recebe o valor recuperado aqui
                         // Agora vá para o arquivo routes/usuario.js
-                        nomeServer: nomeVar,
-                        emailServer: emailVar,
-                        senhaServer: senhaVar,
-                        nascimentoServer: nascimentoVar
+                        cadastroJSON: usuarioCadastro
                     })
                 }).then(function (resposta) {
                     console.log("resposta: ", resposta);
                     if (resposta.ok) {
                         alert(`Cadastro realizado com sucesso! `);
+                        window.location = 'login.html'
                     } else {
                         alert("Houve um erro ao tentar realizar o cadastro!");
                     }

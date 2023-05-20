@@ -37,7 +37,9 @@
             </div>
             <div class="myBio">
                 <h1>myBio</h1>
-                <p>Everything you wanna put =)</p>
+                <p id="bio">Everything you wanna put =)</p>
+                <textarea name="" id="bioText" cols="30" rows="10"></textarea>
+                <button onclick="editarBio()">Edit</button>
             </div>
         </div>
         
@@ -51,3 +53,59 @@
     </footer>
 </body>
 </html>
+<script>
+    var idUsuario = sessionStorage.getItem('ID_USUARIO');
+    carregandoInfoUsuario()
+    function carregandoInfoUsuario(){
+        fetch(`/usuarios/informacoes/${idUsuario}`, {cache: 'no-store'})
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function (resposta){
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    const dadosColetados = {
+                        quantidadePost: resposta[0].qtyPosts,
+                        biografia: resposta[0].bio
+                    };
+                    bio.innerHTML = `${dadosColetados.biografia}`
+                    posts.innerHTML = `${dadosColetados.quantidadePost} posts`
+                })
+            }else{
+                console.log('Nenhum dado encontrado ou erro na API.')
+            }
+        })
+        .catch(function(error){
+            console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+        username.innerHTML = sessionStorage.getItem('NOME_USUARIO');
+        age.innerHTML = `${sessionStorage.getItem('IDADE_USUARIO')} anos`
+    }
+    
+
+    function editarBio(){
+        var biografiaAtt = {
+            fkUser: idUsuario,
+            textoBio: bioText.value
+        }
+        fetch("/usuarios/biografia", 
+            {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                biografiaJSON: biografiaAtt
+            })
+        }).then(function(response){
+                console.log('resposta:')
+                console.log(response)
+                if(response.ok){
+                    alert('Bio atualizada com sucesso!')
+                    location.reload()
+                }else{
+                    alert("Houve um erro ao tentar atualizar a bio!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+</script>

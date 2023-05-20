@@ -20,10 +20,10 @@
     </header>
     <section>
         <div class="postSection">
-            <a href=""><div class="posts">aaa</div></a>
-            <a href=""><div class="posts">aaa</div></a>
-            <a href=""><div class="posts">aaa</div></a>
-            <a href=""><div class="posts">aaa</div></a>
+            <a href=""><div class="posts">
+                <h1>MEMORIES - Fixado*</h1>
+                <p>Seja bem-vindo ao fórum da comunidade Memories, siga as regras e divirta-se</p>
+            </div></a>
         </div>
         <button>Post something</button>
     </section>
@@ -33,3 +33,38 @@
     </footer>
 </body>
 </html>
+<script>
+    fetch('/usuarios/listar', {cache: "no-store"})
+    .then(function(response){
+        if(response.ok){
+            response.json().then(function(resposta){
+                const postagens = resposta
+                console.log(resposta)
+                console.log('Dados recebidos: ' + JSON.stringify(resposta))
+                for(let object of postagens){
+                    var postHref = document.createElement('a');
+                    postHref.addEventListener('click', ()=>{
+                        sessionStorage.ID_POST = object.id
+                    })
+                    postHref.setAttribute('value', object.id);
+                    postHref.setAttribute('href', 'post.html'/*LINK AQUI, mas preciso fazer com que ele pegue o id do post, que está no value do proprio elemento...*/);
+                    document.querySelector('.postSection').appendChild(postHref);
+                    var postDiv = document.createElement('div');
+                    postDiv.setAttribute('class', 'posts');
+                    var divTitle = document.createElement('h1');
+                    divTitle.textContent = object.titulo
+                    var divParagraph = document.createElement('p');
+                    divParagraph.textContent = object.conteudo;
+                    postDiv.appendChild(divTitle);
+                    postDiv.appendChild(divParagraph);
+                    postHref.appendChild(postDiv);
+                }
+            })
+        }else{
+            alert('Nenhum dado encontrado ou erro na API.')
+        }
+    }).catch(function(error){
+        console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+    })
+    
+</script>
