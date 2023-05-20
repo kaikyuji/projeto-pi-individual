@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 function listar() {
     console.log("ACESSEI O USUARIO MODEL NA FUNCAO LISTAR! ESTAREI BUSCANDO TODAS AS POSTAGENS E SEUS RESPECTIVOS AUTORES, DATA DE POSTAGEM E TAMBÉM TEMPO.");
-    var instrucao = `select post.id, post.titulo, post.conteudo, post.dataPost, usuario.username from post join usuario on post.fkUser = usuario.id;`;
+    var instrucao = `select post.id, post.titulo, post.conteudo, post.dataPost, usuario.username from post join usuario on post.fkUser = usuario.id order by post.id desc;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -19,6 +19,13 @@ function editarBio(usuarioBio){
     console.log('ACESSEI O USUARIO MODEL NA FUNCAO EDITARBIO! ESTAREI INSERINDO A NOVA BIOGRAFIA DO ID DO USUARIO LOGGADO')
 
     var instrucao = `update usuario set bio = '${usuarioBio.textoBio}' where id = ${usuarioBio.fkUser};`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao)
+}
+
+function publicarNovo(postagem){
+    console.log('ACESSEI O USUARIO MODEL, NA FUNCAO PUBLICAR NOVO')
+    var instrucao = `insert into post values (null, '${postagem.titulo}', '${postagem.conteudo}', '${postagem.dataHora}', ${postagem.fkUser})`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao)
 }
@@ -55,6 +62,7 @@ module.exports = {
     entrar,
     cadastrar,
     listar,
+    publicarNovo,
     buscarInformacoes,
     buscarPost,
     editarBio

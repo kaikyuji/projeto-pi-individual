@@ -33,4 +33,8 @@ router.get('/posts/:idPost', function(req, res){
     usuarioController.buscarPost(req, res)
 })
 
+router.post('/publicar', function(req,res){
+    usuarioController.publicarNovo(req, res)
+})
+
 module.exports = router;

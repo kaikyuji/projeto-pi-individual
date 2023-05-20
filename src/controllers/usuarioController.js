@@ -59,6 +59,32 @@ function buscarPost(req, res){
     })
 }
 
+function publicarNovo(req, res){
+    var postagem = req.body.postagemJSON;
+    for(let values of Object.keys(postagem)){
+        if(postagem[values] == undefined){
+            res.status(400).send(`Seu ${values} está undefined `)
+            return false
+        }
+    }
+
+    usuarioModel.publicarNovo(postagem)
+    .then(
+        function(resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 function editarBio(req, res){
     console.log('ACESSEI O CONTROLLER USUARIO, ESTOU NA FUNCAO EDITAR BIO!')
     var usuarioBio = req.body.biografiaJSON;
@@ -152,6 +178,7 @@ function entrar(req, res) {
     }
 
 }
+
 module.exports = {
     entrar,
     cadastrar,
@@ -159,5 +186,6 @@ module.exports = {
     testar,
     buscarInformacoes,
     buscarPost,
-    editarBio
+    editarBio,
+    publicarNovo
 }
