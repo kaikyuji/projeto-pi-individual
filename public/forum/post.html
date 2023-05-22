@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://kit.fontawesome.com/7ac0278b37.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="forums.css">
+    <link rel="stylesheet" href="post.css">
     <link rel="stylesheet" href="header.css">
 </head>
 <body>
@@ -19,35 +19,109 @@
         </ul>
     </header>
     <section>
-        <div class="specificPost">
-            
+        <div class="post">
         </div>
     </section>
+    <div class="newPost">
+        <textarea id="conteudoPost" cols="30" rows="10"></textarea>
+        <button onclick="publicarComentario()">Comentar</button>
+    </div>
+
     <footer>
         <h3>Feito de fãs, para fãs.</h3>
         <h4>ワンピース❤️</h4>
     </footer>
 </body>
 </html>
+<script src="js/funcoes.js"></script>
 <script>
-    var idPost = sessionStorage.getItem('ID_POST')
-    fetch(`/usuarios/posts/${idPost}`, {cache: "no-store"})
-    .then(function(response){
-        if(response.ok){
-            response.json().then(function(resposta){
-                console.log('Dados recebidos: ')
-                console.log(resposta)
-                var titulo = document.createElement('h1');
-                titulo.textContent = resposta[0].titulo;
-                var conteudo = document.createElement('p');
-                conteudo.textContent = resposta[0].conteudo;
-                document.querySelector('.specificPost').append(titulo)
-                document.querySelector('.specificPost').append(conteudo)
-            })
-        }else{
-            alert('Nenhum dado encontrado ou erro na API.')
+    buscandoPost()
+    buscandoComentarios()
+    function buscandoPost(){
+        const idPost = sessionStorage.getItem('ID_POST')
+        fetch(`/usuarios/posts/${idPost}`, {cache: "no-store"})
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function(resposta){
+                    console.log('Dados (post) recebido: ')
+                    console.log(resposta)
+                    var titulo = document.createElement('h1');
+                    titulo.textContent = resposta[0].titulo;
+                    var autor = document.createElement('p');
+                    autor.setAttribute('class', 'author');
+                    autor.textContent = `by ${resposta[0].username} at ${resposta[0].dataPost}`
+                    var conteudo = document.createElement('p');
+                    conteudo.textContent = resposta[0].conteudo;
+                    document.querySelector('.post').append(titulo)
+                    document.querySelector('.post').append(conteudo)
+                    document.querySelector('.post').append(autor)
+                })
+            }else{
+                alert('Nenhum dado encontrado ou erro na API.')
+            }
+        }).catch(function(error){
+            console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+    }
+
+    function buscandoComentarios(){
+        const idPost = sessionStorage.getItem('ID_POST')
+        fetch(`/usuarios/comentarios/${idPost}`, {cache: "no-store"})
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function(resposta){
+                    console.log('Dados (comentarios) recebidos:')
+                    console.log(resposta)
+                    for(let object of resposta){
+                        const divComentario = document.createElement('div');
+                        divComentario.setAttribute('class', 'post');
+                        const autorComentario = document.createElement('p');
+                        autorComentario.setAttribute('class', 'author');
+                        autorComentario.textContent = `by ${object.username} at ${object.dtComentario}`
+                        const paragrafoComentario = document.createElement('p');
+                        paragrafoComentario.textContent = object.conteudo
+                        divComentario.appendChild(paragrafoComentario)
+                        divComentario.appendChild(autorComentario)
+                        document.querySelector('section').appendChild(divComentario)
+                    }
+                })
+            }
+        })
+        //select * from comentario where fkPost = ${sessionStorage.getItem('ID_POST')}
+    }
+
+    function publicarComentario(){
+        var comentario = {
+            conteudo: conteudoPost.value,
+            dtComentario: pegarData(),
+            idAutor: sessionStorage.getItem('ID_USUARIO'),
+            idPost: sessionStorage.getItem('ID_POST')
         }
-    }).catch(function(error){
-        console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
-    })
+        if(comentario.conteudo == '' || comentario.idAutor == '' || comentario.idPost == ''){
+            alert('Campo de texto vázio!')
+        }else{
+            fetch('/usuarios/publicarComentario', {
+                method: 'POST', 
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    comentarioJSON: comentario
+                })
+            }).then(function(resposta){
+                console.log(resposta);
+                if(resposta.ok){
+                    alert('Comentário publicado com sucesso!')
+                    location.reload()
+                }else{
+                    alert('Houve um erro ao tentar publicar o comentário!')
+                }
+            }).catch(function(erro){
+                console.log('ERRO: ' + erro)
+            })
+        }
+    }
+
 </script>

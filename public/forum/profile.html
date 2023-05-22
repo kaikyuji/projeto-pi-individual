@@ -21,10 +21,10 @@
     <section>
         <div class="profile">
             <div class="container">
-                <div style="border-right: 2px solid black;" class="firstLine">
+                <div class="profilePic">
                     <img src="../assets/imgs/birthday/luffy.png" alt="">
                 </div>
-                <div class="firstLine">
+                <div class="profileData">
                     <div class="status">
                         <h1 id="username">Username</h1>
                         <ul>
@@ -38,13 +38,18 @@
             <div class="myBio">
                 <h1>myBio</h1>
                 <p id="bio">Everything you wanna put =)</p>
-                <textarea name="" id="bioText" cols="30" rows="10"></textarea>
-                <button onclick="editarBio()">Edit</button>
+                <div class="buttonBox">
+                    <button onclick="showTextarea()">Editar</button>
+                </div>
+                <div class="edicaoBio">
+                    <textarea name="" id="bioText" cols="30" rows="10"></textarea>
+                    <button onclick="editarBio()">Confirm</button>
+                </div>
             </div>
         </div>
         
         <div class="hello">
-            <h1>Hello, look at you!</h1>
+            <canvas id="myChart"></canvas>
         </div>
     </section>
     <footer>
@@ -53,9 +58,11 @@
     </footer>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     var idUsuario = sessionStorage.getItem('ID_USUARIO');
     carregandoInfoUsuario()
+    showAnalytics()
     function carregandoInfoUsuario(){
         fetch(`/usuarios/informacoes/${idUsuario}`, {cache: 'no-store'})
         .then(function(response){
@@ -79,8 +86,6 @@
         username.innerHTML = sessionStorage.getItem('NOME_USUARIO');
         age.innerHTML = `${sessionStorage.getItem('IDADE_USUARIO')} anos`
     }
-    
-
     function editarBio(){
         var biografiaAtt = {
             fkUser: idUsuario,
@@ -107,5 +112,34 @@
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
+    }
+    function showTextarea(){
+        var edicaoBio = document.querySelector('.edicaoBio')
+        if(getComputedStyle(edicaoBio).display == 'none'){
+            edicaoBio.style.display = 'block'
+        }else{
+            edicaoBio.style.display = 'none'
+        }
+    }
+    function showAnalytics(){
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
     }
 </script>

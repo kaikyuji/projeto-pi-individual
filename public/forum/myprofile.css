@@ -1,13 +1,13 @@
 section{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 2em;
-    height: 75vh;
+    min-height: 75vh;
 }
 
 section .profile{
-    width: 50%;
-    height: 90%;
+    width: 40%;
     background-color: var(--color2);
     padding: 2em;
     border-radius: 25px;
@@ -15,26 +15,58 @@ section .profile{
 
 section .hello{
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    width: 50%;
-    height: 90%;
+    width: 55%;
+    border: 2px solid black;
 }
 section .profile .container{
     display: flex;
+    justify-content: space-between;
     width: 100%;
     background-color: var(--color2);
 }
 
-section .profile .container .firstLine{
+section .profile .container .profilePic{
+    display: flex;
+    width: 45%;
+}
+
+section .profile .container .profileData{
     padding: 2em;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    border-bottom: 2px solid black;
+    width: 45%;
 }
 
-section .profile .container .firstLine .status ul{
-    list-style: none;   
+section .profile .container .profileData .status ul{
+    list-style: none;
+}
+
+section .profile .myBio .buttonBox{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+
+section .profile .myBio .edicaoBio{
+    padding: .5em 0;
+    display: none;
+    width: 100%;
+}
+
+section .profile .myBio .edicaoBio textarea{
+    padding: 1em;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+button{
+    border: none;
+    padding: 1em 0;
+    border-radius: 500px;
+    width: 30%;
 }

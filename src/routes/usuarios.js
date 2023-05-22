@@ -33,6 +33,14 @@ router.get('/posts/:idPost', function(req, res){
     usuarioController.buscarPost(req, res)
 })
 
+router.get('/comentarios/:idPost', function(req, res){
+    usuarioController.buscarComentarios(req, res)
+})
+
+router.post('/publicarComentario', function(req, res){
+    usuarioController.publicarComentario(req, res)
+})
+
 router.post('/publicar', function(req,res){
     usuarioController.publicarNovo(req, res)
 })

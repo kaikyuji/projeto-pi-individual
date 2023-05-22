@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root{
     --color1: #B42624;
@@ -14,6 +12,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Poppins'
 }
 
 body{
@@ -21,7 +20,6 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: var(--color3);
-    font-family: 'Open Sans';
 }
 
 header{

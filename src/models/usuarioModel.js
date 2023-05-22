@@ -32,10 +32,12 @@ function publicarNovo(postagem){
 
 function buscarPost(idPost){
     console.log('ACESSEI O USUARIO MODEL, NA FUNCAO BUSCAR POSTS! ESTAREI BUCANDO OS DADOS DO ID DA POSTAGEM ESPECIFICADA!')
-    var instrucao = `select * from post where post.id = ${idPost}`
+    var instrucao = `select * from post join usuario on usuario.id = post.fkUser where post.id = ${idPost}`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao)
 }
+
+
 
 function buscarInformacoes(idUsuario){
     console.log('ACESSEI O USUARIO MODEL NA FUNCAO BUSCAR INFORMACOES!. ESTAREI BUSCANDO DADOS VINDOS DO ID DO USUÁRIO LOGGADO!')
@@ -58,12 +60,25 @@ function cadastrar(usuario) {
     return database.executar(instrucao);
 }
 
+function buscarComentarios(idPost){
+    console.log('ACESSEI O USUARIO MODEL, NA FUNCAO BUSCAR COMENTARIOS! ESTAREI BUSCANDO OS DADOS DOS COMENTARIOS COM A FK EQUIVALENTE AO ID DA POSTAGEM ESPECIFICADA!')
+    var instrucao = `select comentario.conteudo, comentario.dtComentario, usuario.username from comentario join usuario on comentario.fkAutorComentario = Usuario.id where fkPost = ${idPost}`
+    return database.executar(instrucao)
+}
+
+function publicarComentario(comentario){
+    console.log('ACESSEI O USUARIO MODEL, NA FUNCAO PUBLICAR COMENTARIOS! ESTAREI INSERINDO OS DADOS ENVIADOS NA TABELA COMENTARIOS');
+    var instrucao = `insert into comentario values (null, '${comentario.conteudo}', '${comentario.dtComentario}', ${comentario.idAutor}, ${comentario.idPost})`
+    return database.executar(instrucao)
+}
 module.exports = {
     entrar,
     cadastrar,
     listar,
     publicarNovo,
     buscarInformacoes,
+    buscarComentarios,
     buscarPost,
+    publicarComentario,
     editarBio
 };

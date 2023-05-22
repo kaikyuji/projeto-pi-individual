@@ -11,14 +11,22 @@ bio text
 );
 
 create table Post
-(id int,
+(id int auto_increment primary key,
 titulo varchar(50),
 conteudo text,
 dataPost datetime,
 fkUser int,
-constraint PK primary key (id, fkUser),
 constraint FK foreign key (fkUser) references Usuario(id)
 );
+
+create table Comentario
+(id int auto_increment primary key,
+conteudo text,
+dtComentario datetime,
+fkAutorComentario int,
+fkPost int,
+foreign key(fkAutorComentario) references Usuario(id),
+foreign key (fkPost) references Post(id));
 
 
 create table Recorde
@@ -26,7 +34,5 @@ create table Recorde
 pontuacao int,
 dtRecorde date,
 fkUsuario int,
-foreign key (fkUsuario) references usuario(idUsuario)
-)
-
-
+foreign key (fkUsuario) references usuario(id)
+);

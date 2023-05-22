@@ -35,14 +35,20 @@
     </div>
 </body>
 </html>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+    document.addEventListener('keypress', function(key){
+        if(key.key == 'Enter'){
+            login()
+        }
+    })
     function login(){
         var usuarioLogin = {
             email: input_email.value,
             senha: input_senha.value
         }
 
-        if (usuarioLogin.emailVar == "" || usuarioLogin.senhaVar == "") {
+        if (usuarioLogin.email == "" || usuarioLogin.senha == "") {
             alert("Mensagem de erro para todos os campos em branco");
         }
         else {

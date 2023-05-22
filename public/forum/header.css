@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: Poppins;
 }
 
 body{
@@ -20,7 +23,7 @@ header{
     align-items: center;
     justify-content: center;
     height: 15vh;
-    background: var(--color1);
+    background: var(--color2);
     padding: 2em;
 }
 
@@ -41,8 +44,7 @@ header ul a{
     align-items: center;
     justify-content: center;
     background: var(--color3);
-    padding: 1em 2em;
-    border-radius: 25px;
+    padding: .5em 1.5em;
 }
 
 footer{

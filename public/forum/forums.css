@@ -1,4 +1,3 @@
-
 section{
     display: flex;
     justify-content: space-around;
@@ -6,7 +5,6 @@ section{
     width: 100%;
     min-height: 75vh;
 }
-
 
 section .postSection{
     display: flex;
@@ -17,15 +15,29 @@ section .postSection{
 }
 
 section .postSection .posts{
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.5);
+    width: 100%;
     height: 200px;
-    padding: 2em;
-    border: 2px solid black;
-    border-radius: 50px;
+    padding: 1.5em;
+    border-radius: 25px;
 }
 
-section .postSection a{
-    color: black;
+a{
+    color: #000;
     text-decoration: none;
+}
+
+section .postSection .posts p{
+    height: 130px;
+}
+section .postSection .posts h1{
+    height: 70px;
+}    
+
+section .postSection .posts p, h1{
+    overflow: hidden;
 }
 
 section .newPost{
@@ -44,6 +56,16 @@ section .newPost .inputBox{
 section .newPost .inputBox .inputRow{
     display: flex;
     flex-direction: column;
+    gap: 5px;
+}
+section .newPost .inputBox .inputRow input{
+    padding: 1em;
+    outline: none;
+}
+
+section .newPost .inputBox .inputRow textarea{
+    outline: none;
+    padding: 1em;
 }
 
 section .newPost button{

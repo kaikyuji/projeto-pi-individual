@@ -62,10 +62,10 @@
             confirmasenha: input_confirmasenha.value
         }
         
-        if(usuario.username == `` || usuario.email == `` || usuario.nascimento == `` || usuario.senha == `` || usuario.confirmasenha == ``){
+        if(usuarioCadastro.username == `` || usuarioCadastro.email == `` || usuarioCadastro.nascimento == `` || usuarioCadastro.senha == `` || usuarioCadastro.confirmasenha == ``){
             alert(`campo obrigatorio vazio!`)
         }else{
-            if(usuario.senha != usuario.confirmasenha){
+            if(usuarioCadastro.senha != usuarioCadastro.confirmasenha){
                 alert(`Campos de senha náo correspodem`)
             }else{
                 // Enviando o valor da nova input

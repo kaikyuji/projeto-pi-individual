@@ -59,6 +59,22 @@ function buscarPost(req, res){
     })
 }
 
+function buscarComentarios(req, res){
+    var idPost = req.params.idPost;
+    usuarioModel.buscarComentarios(idPost)
+    .then(function(resultado){
+        if(resultado.length > 0){
+            res.status(200).json(resultado)
+        }else{
+            res.status(204).send('Nenhum resultado encontrado!')
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log('Houve um erro ao buscar as últimas medidas.', erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 function publicarNovo(req, res){
     var postagem = req.body.postagemJSON;
     for(let values of Object.keys(postagem)){
@@ -83,6 +99,25 @@ function publicarNovo(req, res){
             res.status(500).json(erro.sqlMessage);
         }
     );
+}
+
+function publicarComentario(req, res){
+    var comentario = req.body.comentarioJSON;
+    for(let values of Object.keys(comentario)){
+        if(comentario[values] == undefined){
+            res.status(400).send(`Seu ${values} está undefined `)
+            return false
+        }
+    }   
+
+    usuarioModel.publicarComentario(comentario)
+    .then(function(resultado){
+        res.json(resultado)
+    }).catch(function(erro){
+        console.log(erro);
+        console.log("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage)
+        res.status(500).json(erro.sqlMessage);
+    })
 }
 
 function editarBio(req, res){
@@ -185,7 +220,9 @@ module.exports = {
     listar,
     testar,
     buscarInformacoes,
+    buscarComentarios,
     buscarPost,
     editarBio,
-    publicarNovo
+    publicarNovo,
+    publicarComentario
 }
