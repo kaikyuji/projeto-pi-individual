@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://kit.fontawesome.com/7ac0278b37.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="post.css">
-    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="css/post.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
     <header>
         <ul>
             <a href="../index.html"><li>Home</li></a>
             <a href="forums.html"><li>Forums</li></a>
-            <a href=""><li>Jumping Game</li></a>
             <a href="profile.html"><li><i class="fa-solid fa-user fa-xl"></i></li></a>
+            <a href="../login.html"><li>Logout</li></a>
         </ul>
     </header>
     <section>
@@ -35,6 +35,7 @@
 </html>
 <script src="js/funcoes.js"></script>
 <script>
+    validarSessao()
     buscandoPost()
     buscandoComentarios()
     function buscandoPost(){

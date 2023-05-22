@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your profile</title>
     <script src="https://kit.fontawesome.com/7ac0278b37.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="myprofile.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/myprofile.css">
 </head>
 <body>
     <header>
         <ul>
             <a href="../index.html"><li>Home</li></a>
             <a href="forums.html"><li>Forums</li></a>
-            <a href=""><li>Jumping Game</li></a>
             <a href="profile.html"><li><i class="fa-solid fa-user fa-xl"></i></li></a>
+            <a href="../login.html"><li>Logout</li></a>
         </ul>
     </header>
     <section>
@@ -28,9 +28,8 @@
                     <div class="status">
                         <h1 id="username">Username</h1>
                         <ul>
-                            <li id="age">X years</li>
-                            <li id="posts">Y posts</li>
-                            <li id="points">Z points on JumpGame</li>
+                            <li id="age"></li>
+                            <li id="posts"></li>
                         </ul>
                     </div>
                 </div>
@@ -58,11 +57,15 @@
     </footer>
 </body>
 </html>
+<script src="js/funcoes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    validarSessao()
     var idUsuario = sessionStorage.getItem('ID_USUARIO');
     carregandoInfoUsuario()
     showAnalytics()
+    contarPostagens()
+    contarPostagensUsuario()
     function carregandoInfoUsuario(){
         fetch(`/usuarios/informacoes/${idUsuario}`, {cache: 'no-store'})
         .then(function(response){
@@ -73,8 +76,12 @@
                         quantidadePost: resposta[0].qtyPosts,
                         biografia: resposta[0].bio
                     };
-                    bio.innerHTML = `${dadosColetados.biografia}`
-                    posts.innerHTML = `${dadosColetados.quantidadePost} posts`
+                    if(dadosColetados.biografia == null){
+                        bio.innerHTML = 'Ola, sou novo aqui!'
+                    }else{
+                        bio.innerHTML = dadosColetados.biografia;
+                    }
+                    posts.innerHTML = `${dadosColetados.quantidadePost} post(s)`
                 })
             }else{
                 console.log('Nenhum dado encontrado ou erro na API.')
@@ -122,14 +129,20 @@
         }
     }
     function showAnalytics(){
+        var labels = ['Você', 'Total (Fórum)']
+        var data = [sessionStorage.getItem('POSTS_USUARIO'), sessionStorage.getItem('POSTS_FORUM')]
         const ctx = document.getElementById('myChart');
         new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: labels,
             datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Postagens',
+            data: data,
+            backgroundColor: [
+                '#087F8C',
+                '#861311'
+            ],
             borderWidth: 1
             }]
         },
@@ -140,6 +153,38 @@
             }
             }
         }
-        });
+        })
+    }
+    function contarPostagensUsuario(){
+        fetch(`/usuarios/contarPostsUser/${idUsuario}`)
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function (resposta){
+                    console.log(`Dados de  recebidos: ${JSON.stringify(resposta)}`);
+                    sessionStorage.POSTS_USUARIO = resposta[0].totalUser;
+                })
+            }else{
+                console.log('Nenhum dado encontrado ou erro na API.')
+            }
+        })
+        .catch(function(error){
+            console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
+    }
+    function contarPostagens(){
+        fetch('/usuarios/contarPosts')
+        .then(function(response){
+            if(response.ok){
+                response.json().then(function (resposta){
+                    console.log(`Dados TOTAL recebidos: ${JSON.stringify(resposta)}`);
+                    sessionStorage.POSTS_FORUM = resposta[0].totalForum;
+                })
+            }else{
+                console.log('Nenhum dado encontrado ou erro na API.')
+            }
+        })
+        .catch(function(error){
+            console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
+        })
     }
 </script>

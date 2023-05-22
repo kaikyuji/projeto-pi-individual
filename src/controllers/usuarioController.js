@@ -214,6 +214,37 @@ function entrar(req, res) {
 
 }
 
+function contarPostagensUsuario(req, res){
+    var idUsuario = req.params.idUsuario;
+    usuarioModel.contarPostagensUsuario(idUsuario)
+    .then(function(resultado){
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        }else{
+            res.status(204).send('Nenhum resultado encontrado!')
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log('Houve um erro ao buscar as últimas medidas.', erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function contarPostagens(req, res){
+    usuarioModel.contarPostagens()
+    .then(function(resultado){
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        }else{
+            res.status(204).send('Nenhum resultado encontrado!')
+        }
+    }).catch(function(erro){
+        console.log(erro);
+        console.log('Houve um erro ao buscar as últimas medidas.', erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 module.exports = {
     entrar,
     cadastrar,
@@ -224,5 +255,7 @@ module.exports = {
     buscarPost,
     editarBio,
     publicarNovo,
-    publicarComentario
+    publicarComentario,
+    contarPostagensUsuario,
+    contarPostagens
 }

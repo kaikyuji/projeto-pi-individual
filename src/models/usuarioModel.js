@@ -37,8 +37,6 @@ function buscarPost(idPost){
     return database.executar(instrucao)
 }
 
-
-
 function buscarInformacoes(idUsuario){
     console.log('ACESSEI O USUARIO MODEL NA FUNCAO BUSCAR INFORMACOES!. ESTAREI BUSCANDO DADOS VINDOS DO ID DO USUÁRIO LOGGADO!')
     // selecionando a BIOGRAFIA do usuário e a quantidade de posts
@@ -62,7 +60,7 @@ function cadastrar(usuario) {
 
 function buscarComentarios(idPost){
     console.log('ACESSEI O USUARIO MODEL, NA FUNCAO BUSCAR COMENTARIOS! ESTAREI BUSCANDO OS DADOS DOS COMENTARIOS COM A FK EQUIVALENTE AO ID DA POSTAGEM ESPECIFICADA!')
-    var instrucao = `select comentario.conteudo, comentario.dtComentario, usuario.username from comentario join usuario on comentario.fkAutorComentario = Usuario.id where fkPost = ${idPost}`
+    var instrucao = `select comentario.conteudo, comentario.dtComentario, usuario.username from comentario join usuario on comentario.fkAutorComentario = Usuario.id where fkPost = ${idPost} order by comentario.id`
     return database.executar(instrucao)
 }
 
@@ -71,6 +69,19 @@ function publicarComentario(comentario){
     var instrucao = `insert into comentario values (null, '${comentario.conteudo}', '${comentario.dtComentario}', ${comentario.idAutor}, ${comentario.idPost})`
     return database.executar(instrucao)
 }
+
+function contarPostagensUsuario(idUsuario){
+    console.log('ACESSEI O USUARIO MODEL, NA FUNCAO CONTAR POSTAGENS USUARIO')
+    var instrucao = `select count(id) as totalUser from post where fkUser = ${idUsuario}`;
+    return database.executar(instrucao)
+}
+
+function contarPostagens(){
+    console.log('ACESSEI O USUARIO MODEL NA FUNCAO CONTAR POSTAGENS');
+    var instrucao = `select count(id) as totalForum from post`;
+    return database.executar(instrucao)
+}
+
 module.exports = {
     entrar,
     cadastrar,
@@ -80,5 +91,7 @@ module.exports = {
     buscarComentarios,
     buscarPost,
     publicarComentario,
-    editarBio
+    editarBio,
+    contarPostagensUsuario,
+    contarPostagens
 };

@@ -45,4 +45,12 @@ router.post('/publicar', function(req,res){
     usuarioController.publicarNovo(req, res)
 })
 
+router.get('/contarPostsUser/:idUsuario', function(req, res){
+    usuarioController.contarPostagensUsuario(req, res)
+})
+
+router.get('/contarPosts', function(req, res){
+    usuarioController.contarPostagens(req, res)
+})
+
 module.exports = router;

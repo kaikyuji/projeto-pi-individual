@@ -14,3 +14,9 @@ function pegarData(){
 
     return dataHora
 }
+function validarSessao(){
+    if(sessionStorage.EMAIL_USUARIO == `` || sessionStorage.NOME_USUARIO == `` || sessionStorage.ID_USUARIO == `` || sessionStorage.IDADE_USUARIO == ``){
+        alert('Você não está loggado!');
+        window.location = '../../login.html'
+    }
+}
