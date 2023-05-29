@@ -1,7 +1,7 @@
 section{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 2em;
     min-height: 75vh;
 }
@@ -13,12 +13,12 @@ section .profile{
     border-radius: 25px;
 }
 
-section .hello{
+section .chart{
     display: flex;
-    align-items: start;
-    justify-content: center;
-    width: 55%;
-    border: 2px solid black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 50%;
 }
 section .profile .container{
     display: flex;
@@ -69,4 +69,5 @@ button{
     padding: 1em 0;
     border-radius: 500px;
     width: 30%;
+    cursor: pointer;
 }

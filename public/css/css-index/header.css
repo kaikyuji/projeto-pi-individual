@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+html {
+    scroll-behavior: smooth;
+  }
+
 :root{
     --color1: #B42624;
     --color2: #861311;
@@ -20,6 +24,7 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: var(--color3);
+    margin-top: 20vh;
 }
 
 header{

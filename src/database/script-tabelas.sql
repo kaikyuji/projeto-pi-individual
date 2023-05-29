@@ -27,12 +27,3 @@ fkAutorComentario int,
 fkPost int,
 foreign key(fkAutorComentario) references Usuario(id),
 foreign key (fkPost) references Post(id));
-
-
-create table Recorde
-(id int primary key auto_increment,
-pontuacao int,
-dtRecorde date,
-fkUsuario int,
-foreign key (fkUsuario) references usuario(id)
-);
