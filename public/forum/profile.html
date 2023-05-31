@@ -64,9 +64,9 @@
     validarSessao()
     var idUsuario = sessionStorage.getItem('ID_USUARIO');
     carregandoInfoUsuario()
-    showAnalytics()
     contarPostagens()
     contarPostagensUsuario()
+    showAnalytics()
     function carregandoInfoUsuario(){
         fetch(`/usuarios/informacoes/${idUsuario}`, {cache: 'no-store'})
         .then(function(response){

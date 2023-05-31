@@ -7,11 +7,13 @@ section{
 }
 
 section .postSection{
+    padding: 1em;
     display: flex;
     flex-direction: column;
     gap: 25px;
     width: 50%;
-    height: 100%;
+    height: 65vh;
+    overflow: auto;
 }
 
 section .postSection .posts{

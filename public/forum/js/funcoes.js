@@ -15,7 +15,7 @@ function pegarData(){
     return dataHora
 }
 function validarSessao(){
-    if(sessionStorage.EMAIL_USUARIO == `` || sessionStorage.NOME_USUARIO == `` || sessionStorage.ID_USUARIO == `` || sessionStorage.IDADE_USUARIO == ``){
+    if(sessionStorage.EMAIL_USUARIO == undefined || sessionStorage.NOME_USUARIO == undefined || sessionStorage.ID_USUARIO == undefined || sessionStorage.IDADE_USUARIO == undefined){
         alert('Você não está loggado!');
         window.location = '../../login.html'
     }
