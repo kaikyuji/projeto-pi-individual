@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;800&display=swap');
 
 html {
     scroll-behavior: smooth;
@@ -6,7 +6,7 @@ html {
 
 :root{
     --color1: #B42624;
-    --color2: #861311;
+    --color2: #AE0000;
     --color3: #D9D9D9;
 }
 :hover{
@@ -16,7 +16,7 @@ html {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins'
+    font-family: 'Open Sans'
 }
 
 body{
@@ -28,32 +28,25 @@ body{
 }
 
 header{
-    position: fixed;
-    top: 0;
-    height: 10vh;
+    height: 15vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 1px 1px 10px #000;
-    background: var(--color1);
+    background: var(--color2);
     z-index: 5;
 }
 
 header #logo{
-    position: relative;
     height: 100%;
 }
 
 
 nav{    
-    position: fixed;
-    top: 10vh;
     display: flex;
     height: 10vh;
     width: 100%;
     background-image: url(../../assets/imgs/site-stuff/panel.webp);
-    box-shadow: 1px 1px 10px #000;
     background-size: cover;
     background-position: bottom 37.5% right 100%;
     background: blur(15px);
@@ -73,12 +66,12 @@ nav ul a{
     height: 50%;
     text-decoration: none;
     color: #000;
-    font-size: 1.5em;
-    font-weight: bolder;
+    font-weight: 600;
     align-items: center;
     justify-content: center;
     background: var(--color1);
-    padding: 0 2em;
+    padding: 1.5em;
+    border-radius: 15px;
     text-shadow: 1px 1px 10px var(--color2);
 }
 

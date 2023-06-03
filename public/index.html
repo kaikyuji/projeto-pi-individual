@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/css-index/header.css">
     <link rel="stylesheet" href="css/css-index/indexStyle.css">
 </head>
-<body style="margin-top: 25vh;">
+<body >
     <header>
         <img id="logo" src="assets/imgs/site-stuff/op-logo.png" alt="">
     </header>
@@ -68,11 +68,4 @@
 </html>
 <script>
     sessionStorage.clear()
-    var sections = document.querySelectorAll('section')
-    for(let x of sections){
-        x.style.opacity = 0
-        setTimeout(()=>{
-            x.style.opacity = 1
-        }, 500)
-    }
 </script>

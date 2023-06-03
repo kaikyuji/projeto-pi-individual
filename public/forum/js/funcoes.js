@@ -10,10 +10,10 @@ function pegarData(){
     var segundos = dataHoraAtual.getSeconds();
     
     var dataHora = `${ano}/${mes}/${dia} ${horas}:${minutos}:${segundos}`
-    console.log(dataHora)
 
     return dataHora
 }
+
 function validarSessao(){
     if(sessionStorage.EMAIL_USUARIO == undefined || sessionStorage.NOME_USUARIO == undefined || sessionStorage.ID_USUARIO == undefined || sessionStorage.IDADE_USUARIO == undefined){
         alert('Você não está loggado!');

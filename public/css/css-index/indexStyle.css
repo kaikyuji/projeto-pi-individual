@@ -6,7 +6,6 @@ section{
     padding: 2.5% 5%;
     font-size: 1.5em;
     transition: .5s;
-    animation: navegando 1s .5s ease-in-out;
 }
 
 section img{
@@ -40,13 +39,6 @@ section img{
     border-radius: 50px;
 }
 
-@keyframes navegando {
-    0%{
-        transform: translateX(50%);
-    }100%{
-        transform: translate3d(0);
-    }
-}
 
 footer{
     display: flex;

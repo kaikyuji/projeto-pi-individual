@@ -46,7 +46,7 @@ function buscarInformacoes(idUsuario){
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(usuario) {
+async function cadastrar(usuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", usuario);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -54,8 +54,15 @@ function cadastrar(usuario) {
     var instrucao = `
         INSERT INTO usuario (username, email, senha, nascimento) VALUES ('${usuario.username}', '${usuario.email}', '${usuario.senha}', '${usuario.nascimento}');
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+    var instrucao2 = `
+        INSERT INTO recorde (id, fkUsuario, pontos, dtRecorde) VALUES (1, (select id from usuario where username = '${usuario.username}'), 0, current_date)    
+    `
+    try{
+        await database.executar(instrucao)
+        await database.executar(instrucao2)
+    }catch(error){
+        throw error
+    }
 }
 
 function buscarComentarios(idPost){

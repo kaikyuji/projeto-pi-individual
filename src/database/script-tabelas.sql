@@ -27,3 +27,14 @@ fkAutorComentario int,
 fkPost int,
 foreign key(fkAutorComentario) references Usuario(id),
 foreign key (fkPost) references Post(id));
+
+create table Recorde
+(id int auto_increment primary key,
+fkUsuario int,
+pontos int,
+dtRecorde date,
+foreign key (fkUsuario) references Usuario(id)
+);
+
+create user 'kaikykohatsu'@'localhost' identified by '1234';
+grant all privileges on memories.* to 'kaikykohatsu'@'localhost';

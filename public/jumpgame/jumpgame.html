@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump Luffy!</title>
+    <link rel="shortcut icon" href="public/imgs/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="gamescreen">
+        <div class="points">
+            <h6 id="user">User</h6>
+            <h6 id="pontosAtual">000</h6>
+            <h6 id="recorde">000</h6>
+        </div>
+        <img src="imgs/luffy-running.gif" class="character">
+        <img src="imgs/barrel.png" class="barrel">
+        <button class="tryagain" onclick="refresh()">Start Game</button>
+    </div>
+    <div onclick="jumpOnButton()" class="jumpButtonBox">
+        <div class="jumpButton">JUMP</div>
+    </div>
+</body>
+</html>
+<script src="../forum/js/funcoes.js"></script>
+<script src="jumpgame.js"></script>
+<script src="characters.js"></script>
+<script>
+    user.innerHTML = sessionStorage.getItem('NOME_USUARIO');
+    validarSessao()
+</script>

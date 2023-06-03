@@ -22,7 +22,7 @@
         <div class="profile">
             <div class="container">
                 <div class="profilePic">
-                    <img src="../assets/imgs/birthday/luffy.png" alt="">
+                    <img id="pfpImg" src="../assets/imgs/site-stuff/profilepic.png" alt="">
                 </div>
                 <div class="profileData">
                     <div class="status">
@@ -60,13 +60,24 @@
 </html>
 <script src="js/funcoes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    validarSessao()
-    var idUsuario = sessionStorage.getItem('ID_USUARIO');
-    carregandoInfoUsuario()
-    contarPostagens()
-    contarPostagensUsuario()
-    showAnalytics()
+<script> 
+    validarSessao() // verifica se dados do usuário estão registrados em SESSION_STORAGE
+    var idUsuario = sessionStorage.getItem('ID_USUARIO'); 
+    carregandoPagina()
+    async function carregandoPagina(){
+        try{
+            carregandoInfoUsuario()
+            await contarPostagens()
+            await contarPostagensUsuario()
+            await showAnalytics()
+            return true
+        }catch(error){
+            throw error
+        }
+    }
+        
+
+
     function carregandoInfoUsuario(){
         fetch(`/usuarios/informacoes/${idUsuario}`, {cache: 'no-store'})
         .then(function(response){
@@ -130,6 +141,7 @@
         }
     }
     function showAnalytics(){
+        console.log('Plotando grafico!')
         var labels = ['Você', 'Total (Fórum)']
         var data = [sessionStorage.getItem('POSTS_USUARIO'), sessionStorage.getItem('POSTS_FORUM')]
         const ctx = document.getElementById('myChart');
