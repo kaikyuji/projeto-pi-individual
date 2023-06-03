@@ -11,4 +11,8 @@ router.post('/cadastrarRecorde', function(req, res){
     jumpingController.cadastrarRecorde(req, res)
 })
 
+router.get('/puxarTop5', function(req, res){
+    jumpingController.puxarTop5(req, res)
+})
+
 module.exports = router

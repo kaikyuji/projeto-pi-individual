@@ -14,6 +14,8 @@
         <ul>
             <a href="../index.html"><li>Home</li></a>
             <a href="forums.html"><li>Forums</li></a>
+            <a href="../jumpgame/jumpgame.html"><li>JumpGame</li></a>
+            <a href="ranking.html"><li>Ranking</li></a>
             <a href="profile.html"><li><i class="fa-solid fa-user fa-xl"></i></li></a>
             <a href="../login.html"><li>Logout</li></a>
         </ul>
@@ -30,6 +32,7 @@
                         <ul>
                             <li id="age"></li>
                             <li id="posts"></li>
+                            <li id="jumpgame"></li>
                         </ul>
                     </div>
                 </div>
@@ -63,20 +66,18 @@
 <script> 
     validarSessao() // verifica se dados do usuário estão registrados em SESSION_STORAGE
     var idUsuario = sessionStorage.getItem('ID_USUARIO'); 
-    carregandoPagina()
-    async function carregandoPagina(){
-        try{
-            carregandoInfoUsuario()
-            await contarPostagens()
-            await contarPostagensUsuario()
-            await showAnalytics()
-            return true
-        }catch(error){
-            throw error
-        }
-    }
-        
-
+    var elementosHTML = [
+        document.querySelector('#username'),
+        document.querySelector('#age'),
+        document.querySelector('#posts'), 
+        document.querySelector('#jumpgame'),
+        document.querySelector('#bio')]
+    
+    carregandoInfoUsuario()
+    contarPostagens()
+    contarPostagensUsuario()
+    puxarRecorde()
+    setTimeout(()=>{showAnalytics()}, 200)
 
     function carregandoInfoUsuario(){
         fetch(`/usuarios/informacoes/${idUsuario}`, {cache: 'no-store'})
@@ -89,11 +90,11 @@
                         biografia: resposta[0].bio
                     };
                     if(dadosColetados.biografia == null){
-                        bio.innerHTML = 'Ola, sou novo aqui!'
+                        elementosHTML[4].innerHTML = 'Ola, sou novo aqui!'
                     }else{
-                        bio.innerHTML = dadosColetados.biografia;
+                        elementosHTML[4].innerHTML = dadosColetados.biografia;
                     }
-                    posts.innerHTML = `${dadosColetados.quantidadePost} post(s)`
+                    elementosHTML[2].innerHTML = `${dadosColetados.quantidadePost} post(s)`
                 })
             }else{
                 console.log('Nenhum dado encontrado ou erro na API.')
@@ -102,8 +103,8 @@
         .catch(function(error){
             console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
         })
-        username.innerHTML = sessionStorage.getItem('NOME_USUARIO');
-        age.innerHTML = `${sessionStorage.getItem('IDADE_USUARIO')} anos`
+        elementosHTML[0].innerHTML = sessionStorage.getItem('NOME_USUARIO');
+        elementosHTML[1].innerHTML = `${sessionStorage.getItem('IDADE_USUARIO')} anos`
     }
     function editarBio(){
         var biografiaAtt = {
@@ -200,4 +201,12 @@
             console.log(`Erro na obtenção dos dados p/ gráfico: ${error.message}`)
         })
     }
+    function puxarRecorde(){
+    fetch(`/jumping/puxarRecorde/${idUsuario}`)
+    .then(function(resposta){
+        resposta.json().then(function(response){
+            elementosHTML[3].textContent = `${response[0].recordeAtual} points`  
+        })
+    })
+}
 </script>

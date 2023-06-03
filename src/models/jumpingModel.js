@@ -10,7 +10,13 @@ function cadastrarRecorde(usuario, recorde){
     console.log('Executando a instrucao:' + instrucao)
     return database.executar(instrucao)
 }
+
+function puxarTop5(){
+    var instrucao = `select username, pontos from recorde join usuario on usuario.id = recorde.fkUsuario order by pontos desc limit 5`
+    return database.executar(instrucao)
+}
 module.exports = {
     puxarRecorde,
-    cadastrarRecorde
+    cadastrarRecorde,
+    puxarTop5
 }

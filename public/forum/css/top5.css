@@ -1,0 +1,41 @@
+section{
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+section .imgBox{
+    width: 20%;
+}
+
+section .imgBox img{
+    width: 100%;
+    border-radius: 50%;
+    border: 10px solid var(--color2);
+}
+
+section ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+section ul .top5{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+}
+
+section ul .top5 .user{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: pre-wrap;
+    width: 50%;
+    border-right: 2px solid black;
+}

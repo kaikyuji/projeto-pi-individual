@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP5</title>
+    <script src="https://kit.fontawesome.com/7ac0278b37.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/top5.css">
+</head>
+<body>
+    <header>
+        <ul>
+            <a href="../index.html"><li>Home</li></a>
+            <a href="forums.html"><li>Forums</li></a>
+            <a href="../jumpgame/jumpgame.html"><li>JumpGame</li></a>
+            <a href="ranking.html"><li>Ranking</li></a>
+            <a href="profile.html"><li><i class="fa-solid fa-user fa-xl"></i></li></a>
+            <a href="../login.html"><li>Logout</li></a>
+        </ul>
+    </header>
+    <section>
+        <div class="imgBox">
+            <img src="../assets/imgs/site-stuff/memorieslogo.png" alt="">
+        </div>
+        <h1>TOP5 - Jumping Game</h1>
+        <ul>
+            <li class="top5"></li>
+            <li class="top5"></li>
+            <li class="top5"></li>
+            <li class="top5"></li>
+            <li class="top5"></li>
+        </ul>
+    </section>
+</body>
+</html>
+<script>
+    var top5 = document.querySelectorAll('.top5')
+    fetch('/jumping/puxarTop5', {cache: 'no-store'})
+    .then(function(response){
+        response.json().then(function(resposta){
+            console.log('Dados do banco:')
+            console.log(resposta)
+            for(i in resposta){
+                if(i==0){
+                    top5[i].innerHTML = `<h3 class="user">${resposta[i].username} <i class="fa-solid fa-crown" style="color: #fff700;"></i></h3>  ${resposta[i].pontos} points`
+                }else{
+                    top5[i].innerHTML = `<h3 class="user">${resposta[i].username}</h3>  ${resposta[i].pontos} points`
+                }
+            }
+        })
+    })
+</script>

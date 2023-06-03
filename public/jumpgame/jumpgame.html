@@ -20,13 +20,15 @@
         <button class="tryagain" onclick="refresh()">Start Game</button>
     </div>
     <div onclick="jumpOnButton()" class="jumpButtonBox">
-        <div class="jumpButton">JUMP</div>
+        <button class="jumpButton">JUMP</button>
+    </div>
+    <div class="offButtonBox">
+        <a href="../forum/forums.html" class="offButton">OFF</a>
     </div>
 </body>
 </html>
 <script src="../forum/js/funcoes.js"></script>
 <script src="jumpgame.js"></script>
-<script src="characters.js"></script>
 <script>
     user.innerHTML = sessionStorage.getItem('NOME_USUARIO');
     validarSessao()

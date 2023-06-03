@@ -44,7 +44,14 @@ section .profile .container .profileData .status ul{
     list-style: none;
 }
 
+section .profile .myBio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 section .profile .myBio .buttonBox{
+    padding: 1em 0;
     width: 100%;
     display: flex;
     justify-content: end;
@@ -52,7 +59,6 @@ section .profile .myBio .buttonBox{
 
 
 section .profile .myBio .edicaoBio{
-    padding: .5em 0;
     display: none;
     width: 100%;
 }
