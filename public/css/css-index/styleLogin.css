@@ -121,22 +121,24 @@ body{
 }*/
 
 .container #merry{
+    padding: 0 0 0 2em;
     align-items: center;
     justify-content: center;
 }
 
 
 .container #merry img{
-    width: 80%;
+    width: 100%;
 }
 
 .container #eastblue{
+    padding: 0 0 0 2em;
     align-items: center;
     justify-content: center;
 }
 
 .container #eastblue img{
-    width: 80%;
+    width: 100%;
     border-radius: 50px;
 }
 

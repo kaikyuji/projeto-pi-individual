@@ -74,9 +74,9 @@ function puxarRecorde(){
 
 function novoRecorde(){
     if(pointsNow > record){
+        alert(`o usuario de id ${userid} passou o seu recorde anterior tendo agora ${record} pontos!!!`)
         record = pointsNow
         document.querySelector('#recorde').innerText = record
-        alert(`o usuario de id ${userid} passou o seu recorde anterior (${record})) tendo agora ${record} pontos!!!`)
         fetch("/jumping/cadastrarRecorde", 
         {
         method: "POST",

@@ -8,9 +8,6 @@ section{
     gap: 2em;
 }
 
-body{
-    margin-top: 20vh;
-}
 
 .topics{
     display: flex;
