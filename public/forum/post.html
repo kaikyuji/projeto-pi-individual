@@ -52,9 +52,7 @@
                     titulo.textContent = resposta[0].titulo;
                     var autor = document.createElement('p');
                     autor.setAttribute('class', 'author');
-                    let dateTime = resposta[0].dataPost .replace('T', ' ');
-                    dateTime = dateTime.replace('000Z', '')
-                    autor.textContent = `by ${resposta[0].username} at ${dateTime}`
+                    autor.textContent = `by ${resposta[0].username} at ${(resposta[0].dataPost).replace('-', '/').replace('-', '/').replace('T', ' - ').replace('.000Z', '')}`
                     var conteudo = document.createElement('p');
                     conteudo.textContent = resposta[0].conteudo;
                     document.querySelector('.post').append(titulo)
@@ -82,9 +80,7 @@
                         divComentario.setAttribute('class', 'post');
                         const autorComentario = document.createElement('p');
                         autorComentario.setAttribute('class', 'author');
-                        let dateTime = object.dtComentario.replace('T', ' ');
-                        dateTime = dateTime.replace('000Z', '')
-                        autorComentario.textContent = `by ${object.username} at ${dateTime}`
+                        autorComentario.textContent = `por ${object.username} às ${(object.dtComentario).replace('-', '/').replace('-', '/').replace('T', ' - ').replace('.000Z', '')}`
                         const paragrafoComentario = document.createElement('p');
                         paragrafoComentario.textContent = object.conteudo
                         divComentario.appendChild(paragrafoComentario)

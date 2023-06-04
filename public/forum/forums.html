@@ -70,8 +70,12 @@
                         divTitle.textContent = object.titulo
                         var divParagraph = document.createElement('p');
                         divParagraph.textContent = object.conteudo;
+                        var author = document.createElement('span')
+                        author.setAttribute('id', 'userstamp')
+                        author.textContent = `por ${object.username} às ${(object.dataPost).replace('-', '/').replace('-', '/').replace('T', ' - ').replace('.000Z', '')}`
                         postDiv.appendChild(divTitle);
                         postDiv.appendChild(divParagraph);
+                        postDiv.appendChild(author)
                         postHref.appendChild(postDiv);
                     }
                 })
