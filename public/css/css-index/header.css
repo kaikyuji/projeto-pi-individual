@@ -88,3 +88,44 @@ footer{
     height: 10vh;
     background: var(--color2);
 }
+
+.quoteContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2em;
+    background-color: var(--color3);
+}
+
+#quoteDiv{
+    padding: 1em;
+    width: 75%;
+    background-color: var(--color2);
+    border: 10px solid var(--color1);
+    border-radius: 500px;
+    display: flex;
+    gap: .5em;
+}
+
+#quoteDiv #quoteImg{
+    width: 25%;
+    border-radius: 50%;
+}
+
+#quoteDiv #quoteImg img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+#quoteDiv #textBox{
+    color: var(--color3);
+    display: flex;
+    padding: 2em;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 75%;
+    border-bottom-right-radius: 500px;
+    border-top-right-radius: 500px ;
+}
