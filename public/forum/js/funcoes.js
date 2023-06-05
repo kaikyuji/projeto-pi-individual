@@ -93,7 +93,48 @@ function quotes(){
         "frase": "Eu amo heróis, mas não quero me tornar um! Por exemplo, se você tiver carne, um pirata teria um banquete inteiro com carne, mas um herói seria o cara que dividiria à todos, e eu quero comer tudo!",
         'autor': "Luffy",
         'imagem': "https://i.pinimg.com/236x/a0/7b/9c/a07b9c48829f36ca74d707de2c6f2c4a.jpg"
+        },
+        {
+        "frase": "Conhecendo tanto a derrota quanto a vitória, andando por aí derramando lágrimas, é assim que você se torna um verdadeiro homem. ",
+        "autor": "Shanks",
+        "imagem": "https://i.pinimg.com/200x/fd/40/f5/fd40f531aa81b43df7b6ac875728ab61.jpg"
+        },
+        {
+        "frase": "Chega um momento em que um homem deve se manter de pé e lutar. Esse momento é quando alguém ri dos sonhos de seus amigos.",
+        "autor": "Usopp",
+        "imagem": "https://i.pinimg.com/564x/3a/e7/32/3ae73256170d80240d959b065edf2126.jpg"
+        },
+        {
+        "frase": "O que você sabe da morte? Você já morreu? Você acha que a morte preservará sua causa para sempre? A morte não deixa nada para trás! Quando uma pessoa passa, nada resta senão ossos mortos. Se há uma coisa que eu não suporto, é uma pessoa sem respeito pela vida.",
+        "autor": "Brook",
+        "imagem": "https://i.pinimg.com/564x/cf/e2/74/cfe274168e3c58052d4f0a55c992df43.jpg"
+        },
+        {
+        "frase": "Eu não sei usar espadas, não sei navegar, também não sei cozinhar e não sei mentir, o que eu sei, é que dependo dos meus amigos se quiser continuar vivendo!",
+        "autor": "Luffy",
+        "imagem": "https://i.pinimg.com/564x/67/b3/26/67b32624b67a0b48cf7632832a299d47.jpg"
+        },
+        {
+        "frase": "Não tente encontrar uma justificativa para o amor de alguém!",
+        "autor": "Sengoku",
+        "imagem": "https://i.pinimg.com/564x/94/36/69/943669dacee0c0b6d741710b13bfbdf2.jpg"
+        },
+        {
+        "frase": "Não sou o Usopp.",
+        "autor": "Sogeking",
+        "imagem": "https://i.pinimg.com/originals/2e/cd/6c/2ecd6cd825699b04ae25c99665494c42.jpg"
+        },
+        {
+        "frase": "Um médico! Me ensine a ser um médico! Por favor! Me transforme em um médico! Quero saber medicina! Um médico que possa curar toda e qualquer doença! Um médico que consiga curar esse até mesmo esse país! Porque... porque... não há doença que não possa ser curada!",
+        "autor": "Chopper",
+        "imagem": "https://img001.prntscr.com/file/img001/pN4zw8q_T-mcdQ0lkdQntg.png"
+        },
+        {// The things you have destroyed back there were priceless artifacts. Precious treasure whose importance cannot be measured... History may always be repeating itself, but humans cannot go back into the past... you wouldn't understand that, would you?
+        "frase": "As coisas que você acabou de destruir lá atrás, eram artigos sem preço. Tesouros preciosos cuja importância não pode nem ser mensurada... A história pode estar sempre se repetindo, mas os humanos não podem voltar ao passado, você não entenderia isso, não é mesmo? ",
+        "autor": "Robin",
+        "imagem": "https://64.media.tumblr.com/10da8daa30e1950934a880ffd5a7308d/tumblr_plx3l8gEAj1sx8ybdo9_250.pnj"
         }
+        
     ]
     let sortedQ = Math.floor(Math.random() * quotes.length)
     const elementsQ = document.querySelectorAll('.dinamicQ') // 0: img || 1: autor || 2: texto
